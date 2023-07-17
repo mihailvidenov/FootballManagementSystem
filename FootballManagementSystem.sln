@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballManagementSystem", "FootballManagementSystem\FootballManagementSystem.csproj", "{A17175C2-BEC6-4FEB-AF2A-757BDFD2C206}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FF5065AC-774F-44F7-BA55-39F7E2A9A9D9} = {FF5065AC-774F-44F7-BA55-39F7E2A9A9D9}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballManagementSystem.Core", "FootballManagementSystem.Core\FootballManagementSystem.Core.csproj", "{FF5065AC-774F-44F7-BA55-39F7E2A9A9D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A17175C2-BEC6-4FEB-AF2A-757BDFD2C206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A17175C2-BEC6-4FEB-AF2A-757BDFD2C206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A17175C2-BEC6-4FEB-AF2A-757BDFD2C206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A17175C2-BEC6-4FEB-AF2A-757BDFD2C206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF5065AC-774F-44F7-BA55-39F7E2A9A9D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF5065AC-774F-44F7-BA55-39F7E2A9A9D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF5065AC-774F-44F7-BA55-39F7E2A9A9D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF5065AC-774F-44F7-BA55-39F7E2A9A9D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D180B04-6F78-40BB-9717-6F0C4C676559}
+	EndGlobalSection
+EndGlobal
