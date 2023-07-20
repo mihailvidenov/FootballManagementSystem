@@ -18,7 +18,7 @@ namespace FootballManagementSystem.Core.Data
 
         public DbSet<FootballClub> FootballClubs { get; set; }
 
-        public DbSet<EventType> EventTypes { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         public DbSet<MatchProgram> MatchPrograms { get; set; }
 

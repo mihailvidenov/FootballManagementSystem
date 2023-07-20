@@ -12,10 +12,7 @@ namespace FootballManagementSystem.Core.Data.Models
     public class Schedule
     {
 
-        public Schedule()
-        {
-            this.EventTypes = new List<EventType>();
-        }
+        
 
         [Key]
         public int Id { get; set; }
@@ -23,8 +20,6 @@ namespace FootballManagementSystem.Core.Data.Models
         [Required]
         public DateTime Date { get; set; }
 
-        [Required]
-        public string Description { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -33,6 +28,5 @@ namespace FootballManagementSystem.Core.Data.Models
         [ForeignKey(nameof(FootballClubId))]
         public FootballClub FootballClub { get; set; }
 
-        public List<EventType> EventTypes { get; set; }
     }
 }

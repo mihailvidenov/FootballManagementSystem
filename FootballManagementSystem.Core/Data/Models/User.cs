@@ -24,6 +24,7 @@ namespace FootballManagementSystem.Core.Data.Models
         [StringLength(30)]
         public string LastName { get; set; }
 
+      
         public string PhoneNumber { get; set; }
 
         public bool isDeleted { get; set; }

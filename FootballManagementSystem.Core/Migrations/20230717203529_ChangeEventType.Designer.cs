@@ -4,6 +4,7 @@ using FootballManagementSystem.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballManagementSystem.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230717203529_ChangeEventType")]
+    partial class ChangeEventType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,21 @@ namespace FootballManagementSystem.Core.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("EventTypeSchedule", b =>
+                {
+                    b.Property<int>("EventTypesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SchedulesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EventTypesId", "SchedulesId");
+
+                    b.HasIndex("SchedulesId");
+
+                    b.ToTable("EventTypeSchedule");
+                });
 
             modelBuilder.Entity("FootballManagementSystem.Core.Data.Models.Employee", b =>
                 {
@@ -60,27 +77,13 @@ namespace FootballManagementSystem.Core.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("FootballManagementSystem.Core.Data.Models.Event", b =>
+            modelBuilder.Entity("FootballManagementSystem.Core.Data.Models.EventType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Place")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("ScheduleId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -89,9 +92,7 @@ namespace FootballManagementSystem.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ScheduleId");
-
-                    b.ToTable("Events");
+                    b.ToTable("EventTypes");
                 });
 
             modelBuilder.Entity("FootballManagementSystem.Core.Data.Models.FootballClub", b =>
@@ -216,6 +217,10 @@ namespace FootballManagementSystem.Core.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("FootballClubId")
                         .HasColumnType("int");
 
@@ -223,6 +228,11 @@ namespace FootballManagementSystem.Core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
+
+                    b.Property<string>("Place")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -457,6 +467,21 @@ namespace FootballManagementSystem.Core.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("EventTypeSchedule", b =>
+                {
+                    b.HasOne("FootballManagementSystem.Core.Data.Models.EventType", null)
+                        .WithMany()
+                        .HasForeignKey("EventTypesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FootballManagementSystem.Core.Data.Models.Schedule", null)
+                        .WithMany()
+                        .HasForeignKey("SchedulesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FootballManagementSystem.Core.Data.Models.Employee", b =>
                 {
                     b.HasOne("FootballManagementSystem.Core.Data.Models.FootballClub", "FootballClub")
@@ -466,17 +491,6 @@ namespace FootballManagementSystem.Core.Migrations
                         .IsRequired();
 
                     b.Navigation("FootballClub");
-                });
-
-            modelBuilder.Entity("FootballManagementSystem.Core.Data.Models.Event", b =>
-                {
-                    b.HasOne("FootballManagementSystem.Core.Data.Models.Schedule", "Schedule")
-                        .WithMany()
-                        .HasForeignKey("ScheduleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Schedule");
                 });
 
             modelBuilder.Entity("FootballManagementSystem.Core.Data.Models.MatchProgram", b =>
